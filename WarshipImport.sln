@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34221.43
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WarshipImportService", "WarshipImportService\WarshipImportService.csproj", "{3BDF0538-AFAC-4A83-A53B-87A1C3C082CA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WarshipConflictsAPI", "WarshipConflictsAPI\WarshipConflictsAPI.csproj", "{BD314E2F-F075-4719-A982-C6D71153800C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3BDF0538-AFAC-4A83-A53B-87A1C3C082CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3BDF0538-AFAC-4A83-A53B-87A1C3C082CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3BDF0538-AFAC-4A83-A53B-87A1C3C082CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3BDF0538-AFAC-4A83-A53B-87A1C3C082CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD314E2F-F075-4719-A982-C6D71153800C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD314E2F-F075-4719-A982-C6D71153800C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD314E2F-F075-4719-A982-C6D71153800C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD314E2F-F075-4719-A982-C6D71153800C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {56E3D363-A4B5-4528-BBEA-269E388B6A4D}
+	EndGlobalSection
+EndGlobal
