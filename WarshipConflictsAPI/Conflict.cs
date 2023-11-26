@@ -2,15 +2,16 @@
 {
 	public class Conflict
 	{
-		public Conflict(string fieldName, ConflictSource source)
+		public Conflict(ConflictSource source, string fieldName, string value)
 		{
 			if (string.IsNullOrEmpty(fieldName))
 			{
 				throw new ArgumentException($"'{nameof(fieldName)}' cannot be null or empty.", nameof(fieldName));
 			}
 
-			FieldName = fieldName;
 			Source = source;
+			FieldName = fieldName;
+			Value = value;
 		}
 
 		public string FieldName { get; set; }
