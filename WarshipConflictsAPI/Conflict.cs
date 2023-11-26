@@ -15,17 +15,13 @@
 
 		public string FieldName { get; set; }
 
+		public string Value { get; set; }
+
 		public ConflictSource Source { get; set; }
 
 		public override string ToString()
 		{
 			return FieldName;
 		}
-	}
-
-	public enum ConflictSource
-	{
-		Wiki,
-		IrcwccShipList
 	}
 }
