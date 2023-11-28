@@ -1,3 +1,5 @@
+using Azure.Core;
+using Azure.Identity;
 using Serilog;
 using Serilog.Sinks.ApplicationInsights.TelemetryConverters;
 using ServiceBus.Core;
@@ -17,7 +19,19 @@ Log.Information("Application Started");
 var builder = WebApplication.CreateBuilder(args);
 Log.Information("Builder created");
 
-var appInsightsConnection = builder.Configuration.GetConnectionString("AppInsights");
+
+TokenCredential keyvaultCredential = new DefaultAzureCredential();
+if (builder.Environment.IsDevelopment())
+{
+	keyvaultCredential = new ClientSecretCredential(builder.Configuration["tenantID"], builder.Configuration["clientID"], builder.Configuration["clientSecret"]);
+}
+
+var url = $"https://{builder.Configuration["KeyVaultName"]}.vault.azure.net/";
+builder.Configuration.AddAzureKeyVault(new Uri(url), keyvaultCredential);
+
+
+
+var appInsightsConnection = builder.Configuration["AppInsights"];
 if (string.IsNullOrEmpty(appInsightsConnection))
 	Log.Error("Application Insights Connection is NULL");
 
@@ -32,14 +46,14 @@ Log.Information("Application started & Logger attached");
 
 builder.Logging.AddSerilog(Log.Logger);
 
-var connectionString = builder.Configuration.GetConnectionString("DBConnection");
+var connectionString = builder.Configuration["DBConnection"];
 if (string.IsNullOrEmpty(connectionString))
 	Log.Error($"Database connection string is NULL");
 
 // Add services to the container.
 builder.Services.AddSingleton<IWarshipProcessorAPI, WarshipProcessorAPI>((sp) =>
 {
-	return new WarshipProcessorAPI(sp.GetRequiredService<IConfiguration>().GetConnectionString("WarshipEnrichment")!);
+	return new WarshipProcessorAPI(sp.GetRequiredService<IConfiguration>()["WarshipEnrichment"]!);
 });
 
 builder.Services.AddScoped<IProposedShipsDatabase, ProposedShipDatabase>();

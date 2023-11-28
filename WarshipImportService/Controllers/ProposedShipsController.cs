@@ -16,24 +16,12 @@ namespace WarshipImport.Controllers
 	public class ProposedShipsController
 	{
 		private readonly IProposedShipsDatabase _database;
-		private readonly IConfiguration _configuration;
-		private readonly string? _wikiServiceUrl;
-		private readonly string? _ircwccShipListServiceUrl;
 		private readonly IMapper _proposedToShipMapper;
 		private readonly IMapper _shipToProposedMapper;
 
-		public ProposedShipsController(IProposedShipsDatabase proposedShipsDatabase, IConfiguration configuration)
+		public ProposedShipsController(IProposedShipsDatabase proposedShipsDatabase)
 		{
 			_database = proposedShipsDatabase;
-			_configuration = configuration;
-			_wikiServiceUrl = _configuration.GetConnectionString("WikiService");
-			_ircwccShipListServiceUrl = _configuration.GetConnectionString("IrcwccShiplistService");
-
-			if (string.IsNullOrWhiteSpace(_wikiServiceUrl))
-				Log.Error($"Wiki URL is invalid");
-
-			if (string.IsNullOrWhiteSpace(_ircwccShipListServiceUrl))
-				Log.Error($"IRCWCC Ship List URL is invalid");
 
 			_proposedToShipMapper = new MapperConfiguration(cfg => cfg.CreateMap<ProposedShip, Ship>()).CreateMapper();
 			_shipToProposedMapper = new MapperConfiguration(cfg => cfg.CreateMap<Ship, ProposedShip>()).CreateMapper();
